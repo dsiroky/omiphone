@@ -1,0 +1,6 @@
+Import("env")
+
+test_env = env.Clone()
+Export("test_env")
+
+SConscript(dirs=["unit", "endtoend"])

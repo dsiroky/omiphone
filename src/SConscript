@@ -1,0 +1,19 @@
+Import("env")
+
+src_env = env.Clone()
+
+MAIN = "omiphone/main.cpp"
+SRC = Glob("omiphone/*.cpp", exclude=MAIN)
+
+OUT = "omiphone/omiphone"
+
+omiphone_lib = src_env.StaticLibrary(OUT, SRC)
+
+src_env.AppendUnique(
+        LIBS=[
+            omiphone_lib
+        ])
+
+omiphone_prog = src_env.Program(OUT, [MAIN])[0]
+
+Export("omiphone_lib", "omiphone_prog")

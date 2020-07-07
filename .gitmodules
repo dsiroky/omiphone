@@ -1,0 +1,6 @@
+[submodule "thirdparty/googletest"]
+	path = thirdparty/googletest
+	url = https://github.com/google/googletest
+[submodule "thirdparty/strong_type"]
+	path = thirdparty/strong_type
+	url = https://github.com/rollbear/strong_type

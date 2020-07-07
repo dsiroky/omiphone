@@ -1,0 +1,12 @@
+Import("test_env", "gtest", "omiphone_lib")
+
+unittests_env = test_env.Clone()
+
+OUT = "run"
+SRC = Glob("*.cpp")
+
+unittests_env.Append(
+    LIBS=[omiphone_lib, gtest]
+)
+
+prog = unittests_env.Program(OUT, SRC)

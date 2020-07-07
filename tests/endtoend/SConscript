@@ -1,0 +1,13 @@
+Import("test_env", "omiphone_prog")
+
+endtoend_env = test_env.Clone()
+
+endtoend_env["E2E_DIR"] = Dir(".").srcnode()
+endtoend_env["OMIPHONE_PROG"] = str(omiphone_prog)
+
+e2e_prog = endtoend_env.Command("dummy", [],
+            "cd \"$E2E_DIR\" && OMIPHONE_PROG=$OMIPHONE_PROG pytest-3")
+endtoend_env.Depends(e2e_prog, omiphone_prog)
+# do not execute E2E tests by default
+Ignore(".", e2e_prog)
+alias = endtoend_env.Alias("run_e2e_tests", e2e_prog)
